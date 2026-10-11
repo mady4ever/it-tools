@@ -30,6 +30,7 @@ import { tool as jsonToCsv } from './json-to-csv';
 import { tool as cameraRecorder } from './camera-recorder';
 import { tool as imageOptimizer } from './image-optimizer';
 import { tool as pdfMerger } from './pdf-merger';
+import { tool as documentScanner } from './document-scanner';
 import { tool as sharedNote } from './shared-note';
 import { tool as listConverter } from './list-converter';
 import { tool as phoneParserAndFormatter } from './phone-parser-and-formatter';
@@ -144,7 +145,7 @@ export const toolsByCategory: ToolCategory[] = [
   },
   {
     name: 'Images and videos',
-    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder, imageOptimizer, pdfMerger],
+    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder, documentScanner, imageOptimizer, pdfMerger],
   },
   {
     name: 'Development',

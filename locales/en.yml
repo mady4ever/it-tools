@@ -109,6 +109,10 @@ tools:
     title: Camera recorder
     description: Take a picture or record a video from your webcam or camera.
 
+  document-scanner:
+    title: Document scanner
+    description: Photograph paper pages, tidy and reorder them, and make one PDF on your device, then send it to a nearby device.
+
   pdf-merger:
     title: PDF merger
     description: Combine PDFs and photos into one PDF in your browser, then send it to a nearby device.
