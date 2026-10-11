@@ -16,10 +16,10 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
 
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: '#1ea54cFF',
-    primaryColorHover: '#36AD6AFF',
-    primaryColorPressed: '#0C7A43FF',
-    primaryColorSuppl: '#36AD6AFF',
+    primaryColor: '#0a84ffFF',
+    primaryColorHover: '#409cffFF',
+    primaryColorPressed: '#0066d6FF',
+    primaryColorSuppl: '#5ac8faFF',
   },
 
   Notification: {
@@ -37,8 +37,8 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Layout: {
-    color: '#1c1c1c',
-    siderColor: '#232323',
+    color: '#05070c',
+    siderColor: '#0b0f17',
     siderBorderColor: 'transparent',
   },
 
@@ -48,7 +48,7 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Table: {
-    tdColor: '#232323',
-    thColor: '#353535',
+    tdColor: '#10151f',
+    thColor: '#182030',
   },
 };
