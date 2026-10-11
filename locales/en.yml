@@ -109,6 +109,10 @@ tools:
     title: Camera recorder
     description: Take a picture or record a video from your webcam or camera.
 
+  image-optimizer:
+    title: Image optimizer
+    description: Compress, resize and convert a photo, and strip its location and camera metadata, then send it to a nearby device.
+
   keycode-info:
     title: Keycode info
     description: Find the javascript keycode, code, location and modifiers of any pressed key.

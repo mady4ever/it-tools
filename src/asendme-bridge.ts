@@ -23,6 +23,7 @@ export function installAsendmeBridge() {
   if (clipboard?.writeText) {
     const original = clipboard.writeText.bind(clipboard);
     clipboard.writeText = (text: string) => {
+      lastTextAt = Date.now();
       lastCopied = String(text ?? '');
       return original(text);
     };
@@ -31,6 +32,24 @@ export function installAsendmeBridge() {
     const selected = window.getSelection()?.toString();
     if (selected) lastCopied = selected;
   });
+
+  // Remember the file a tool just offered for download so it can be sent instead.
+  const MAX_FILE_BYTES = 50 * 1024 * 1024;
+  let lastFile: { file: File; at: number } | null = null;
+  let lastTextAt = 0;
+  const originalClick = HTMLAnchorElement.prototype.click;
+  HTMLAnchorElement.prototype.click = function patchedClick(this: HTMLAnchorElement) {
+    const { href, download } = this;
+    if (download && /^(blob:|data:)/.test(href)) {
+      fetch(href).then(r => r.blob()).then((blob) => {
+        if (blob.size > 0 && blob.size <= MAX_FILE_BYTES) {
+          lastFile = { file: new File([blob], download, { type: blob.type }), at: Date.now() };
+        }
+      }).catch(() => { /* download still proceeds */ });
+    }
+    return originalClick.call(this);
+  };
+  document.addEventListener('copy', () => { lastTextAt = Date.now(); });
 
   const button = document.createElement('button');
   button.type = 'button';
@@ -58,7 +77,13 @@ export function installAsendmeBridge() {
   button.addEventListener('mousedown', e => e.preventDefault());
 
   button.addEventListener('click', () => {
-    const text = (window.getSelection()?.toString() || selection || lastCopied).trim();
+    const picked = (window.getSelection()?.toString() || '').trim();
+    if (lastFile && !picked && lastFile.at >= lastTextAt) {
+      window.parent.postMessage({ type: 'asendme:send-file', file: lastFile.file }, window.location.origin);
+      say(`Choose who receives ${lastFile.file.name}\u2026`);
+      return;
+    }
+    const text = (picked || selection || lastCopied).trim();
     if (!text) {
       say('Select text, or press a tool\u2019s copy button, then tap Send to nearby.');
       return;
