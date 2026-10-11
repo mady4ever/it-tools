@@ -84,6 +84,7 @@
     "netmask": "^2.0.2",
     "node-forge": "^1.3.1",
     "oui-data": "^1.0.10",
+    "pdf-lib": "1.17.1",
     "pdf-signature-reader": "^1.4.2",
     "pinia": "^2.0.34",
     "plausible-tracker": "^0.3.8",
@@ -149,5 +150,5 @@
     "vitest": "^0.34.0",
     "workbox-window": "^7.0.0",
     "zx": "^7.2.1"
-  }
+  },"pnpm":{"overrides":{"@vueuse/shared":"12.0.0","@vueuse/core":"12.0.0"}}
 }

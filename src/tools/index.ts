@@ -29,6 +29,8 @@ import { tool as tomlToJson } from './toml-to-json';
 import { tool as jsonToCsv } from './json-to-csv';
 import { tool as cameraRecorder } from './camera-recorder';
 import { tool as imageOptimizer } from './image-optimizer';
+import { tool as pdfMerger } from './pdf-merger';
+import { tool as sharedNote } from './shared-note';
 import { tool as listConverter } from './list-converter';
 import { tool as phoneParserAndFormatter } from './phone-parser-and-formatter';
 import { tool as jsonDiff } from './json-diff';
@@ -142,7 +144,7 @@ export const toolsByCategory: ToolCategory[] = [
   },
   {
     name: 'Images and videos',
-    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder, imageOptimizer],
+    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder, imageOptimizer, pdfMerger],
   },
   {
     name: 'Development',
@@ -178,6 +180,7 @@ export const toolsByCategory: ToolCategory[] = [
   {
     name: 'Text',
     components: [
+      sharedNote,
       loremIpsumGenerator,
       textStatistics,
       emojiPicker,
