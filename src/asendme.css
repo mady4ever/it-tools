@@ -21,6 +21,7 @@ body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; }
   border: 0; border-radius: 999px; color: #fff; font-weight: 600; cursor: pointer;
   background: linear-gradient(135deg, #0a84ff, #bf5af2); box-shadow: 0 8px 28px rgba(10,132,255,.45);
 }
+.asendme-send[hidden] { display: none; }
 .asendme-send:hover { filter: brightness(1.1); }
 .asendme-send-hint {
   position: fixed; right: 16px; bottom: 70px; z-index: 1000; padding: 8px 14px; border-radius: 12px;

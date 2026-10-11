@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PDFDocument } from 'pdf-lib';
+import { offerAsendmeFile } from '@/asendme-bridge';
 
 const files = ref<File[]>([]);
 const busy = ref(false);
@@ -58,6 +59,7 @@ async function merge() {
     const saved = await out.save();
     const blob = new Blob([saved], { type: 'application/pdf' });
     result.value = { url: URL.createObjectURL(blob), pages: out.getPageCount(), size: blob.size };
+    offerAsendmeFile(blob, 'merged.pdf');
   }
   catch (e) {
     error.value = e instanceof Error ? e.message : 'Could not merge those files.';

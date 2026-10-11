@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { offerAsendmeFile } from '@/asendme-bridge';
+
 const formats = [
   { value: 'image/jpeg', label: 'JPEG', ext: 'jpg' },
   { value: 'image/webp', label: 'WebP', ext: 'webp' },
@@ -55,6 +57,7 @@ async function optimize() {
     const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, format.value, quality.value / 100));
     if (!blob || blob.type !== format.value) throw new Error('This browser cannot encode that format. Try JPEG or PNG.');
     result.value = { blob, url: URL.createObjectURL(blob), width, height };
+    offerAsendmeFile(blob, outputName.value);
   }
   catch (e) {
     error.value = e instanceof Error ? e.message : 'Could not read that image.';

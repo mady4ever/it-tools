@@ -5,6 +5,7 @@ import {
   useWifiQRCode,
 } from './useQRCode';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { offerAsendmeFile } from '@/asendme-bridge';
 
 const foreground = ref('#000000ff');
 const background = ref('#ffffffff');
@@ -33,6 +34,7 @@ const { qrcode, encryption } = useWifiQRCode({
 });
 
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' });
+watchDebounced(qrcode, (value) => { if (value) offerAsendmeFile(value, 'wifi-qr-code.png'); }, { debounce: 800, immediate: false });
 </script>
 
 <template>

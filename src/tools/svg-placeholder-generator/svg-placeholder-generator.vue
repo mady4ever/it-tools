@@ -2,6 +2,7 @@
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
 import { useCopy } from '@/composable/copy';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { offerAsendmeFile } from '@/asendme-bridge';
 import { textToBase64 } from '@/utils/base64';
 
 const width = ref(600);
@@ -29,6 +30,7 @@ const base64 = computed(() => `data:image/svg+xml;base64,${textToBase64(svgStrin
 const { copy: copySVG } = useCopy({ source: svgString });
 const { copy: copyBase64 } = useCopy({ source: base64 });
 const { download } = useDownloadFileFromBase64({ source: base64 });
+watchDebounced(svgString, (value) => { offerAsendmeFile(new Blob([value], { type: 'image/svg+xml' }), 'placeholder.svg'); }, { debounce: 800, immediate: false });
 </script>
 
 <template>

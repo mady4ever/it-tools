@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { QRCodeErrorCorrectionLevel } from 'qrcode';
 import { useQRCode } from './useQRCode';
+import { offerAsendmeFile } from '@/asendme-bridge';
 import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
 
 const foreground = ref('#000000ff');
@@ -21,6 +22,7 @@ const { qrcode } = useQRCode({
 });
 
 const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' });
+watchDebounced(qrcode, (value) => { if (value) offerAsendmeFile(value, 'qr-code.png'); }, { debounce: 800, immediate: false });
 </script>
 
 <template>

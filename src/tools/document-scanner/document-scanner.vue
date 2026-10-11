@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PDFDocument } from 'pdf-lib';
+import { offerAsendmeFile } from '@/asendme-bridge';
 
 interface Page { id: number; name: string; source: Blob; rotation: number; mode: 'color' | 'document'; thumb: string }
 
@@ -128,6 +129,7 @@ async function build() {
     const saved = await pdf.save();
     const file = new Blob([saved], { type: 'application/pdf' });
     result.value = { url: URL.createObjectURL(file), pages: pdf.getPageCount(), size: file.size };
+    offerAsendmeFile(file, 'scan.pdf');
   }
   catch (e) {
     error.value = e instanceof Error ? e.message : 'Could not build the PDF.';
